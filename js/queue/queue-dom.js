@@ -10,14 +10,14 @@ const dequeue = document.querySelector('.btn-take-dequeue');
 const queue = new Queue();
 
 const clearQueueInput = () => {
-  // ... your code goes here
+  queueInput.value = '';
 };
 
 const generateListQueue = () => {
-  // ... your code goes here
+  const child = document.createElement('li');
+  child.innerText = queueInput.value;
+  queueUL.appendChild(child);
 };
-
-generateListQueue();
 
 const generateWarningQueue = (type) => {
   if (type === 'underflow') {
@@ -29,17 +29,20 @@ const generateWarningQueue = (type) => {
 
 const addToQueue = () => {
   try {
-    // ... your code goes here
+    queue.enqueue(queueInput.value);
+    generateListQueue();
+    clearQueueInput();
   } catch (error) {
-    // there was an overflow error, handle it
+    console.log(error);
   }
 };
 
 const removeFromQueue = () => {
   try {
-    // ... your code goes here
+    queue.dequeue();
+    queueUL.removeChild(queueUL.firstChild);
   } catch (error) {
-    // there was an underflow error, handle it
+    console.log(error);
   }
 };
 
